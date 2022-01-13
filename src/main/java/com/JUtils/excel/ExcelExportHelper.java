@@ -30,6 +30,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.ClientAnchor;
 
 /**
  * Excel 生成通用类，为了兼容，所有 Excel 统一生成 Excel2003 即：xx.xls
@@ -781,15 +782,15 @@ public class ExcelExportHelper {
 	 * @version 1.0
 	 */
 	private void setHeaderStyle(HSSFCellStyle headerStyle,HSSFWorkbook book) {
-		headerStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);   //水平居中
-		headerStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
-		//设置字体
-		HSSFFont font = book.createFont();
-		font.setFontHeightInPoints((short) 12);     //字号：12号
-		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);   //变粗
-		font.setColor(HSSFColor.BLUE.index);   //蓝色
-
-		headerStyle.setFont(font);
+//		headerStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);   //水平居中
+//		headerStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
+//		//设置字体
+//		HSSFFont font = book.createFont();
+//		font.setFontHeightInPoints((short) 12);     //字号：12号
+//		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);   //变粗
+//		font.setColor(HSSFColor.BLUE.index);   //蓝色
+//
+//		headerStyle.setFont(font);
 	}
 
 	/**
@@ -803,13 +804,13 @@ public class ExcelExportHelper {
 	 * @version 1.0
 	 */
 	private void setCellStyle(HSSFCellStyle cellStyle, HSSFWorkbook book) {
-		cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);   //水平居中
-		cellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
-
-		HSSFFont font = book.createFont();
-		font.setFontHeightInPoints((short)12);
-
-		cellStyle.setFont(font);
+//		cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);   //水平居中
+//		cellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
+//
+//		HSSFFont font = book.createFont();
+//		font.setFontHeightInPoints((short)12);
+//
+//		cellStyle.setFont(font);
 	}
 
 	/**
@@ -874,7 +875,7 @@ public class ExcelExportHelper {
 			row.setHeightInPoints((short)(IMAGE_HEIGHT * 10));
 			sheet.setColumnWidth(i, IMAGE_WIDTH * 256);
 		    HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 1023, 255,(short) i, index, (short) i, index);
-	        anchor.setAnchorType(3);
+	        anchor.setAnchorType(ClientAnchor.AnchorType.DONT_MOVE_AND_RESIZE);
 	        //插入图片
 	        byte[] bsValue = (byte[]) value;
 	        patriarch.createPicture(anchor, book.addPicture(bsValue, HSSFWorkbook.PICTURE_TYPE_JPEG));
